@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { addTodos, removeTodos } from "../redux/reducer";
 import { connect } from 'react-redux';
+
 
 const mapStateToProps = (state) => {
   return {
@@ -20,6 +21,8 @@ const mapDispatchToProps = (dispatch) => {
 const Todos = (props) => {
     const [todo, setTodo] = useState("");
 
+    const inputRef = useRef(true);
+
     const handleChage = (e) =>{
          setTodo(e.target.value);
     };
@@ -34,11 +37,13 @@ const Todos = (props) => {
           className='todo-input'
           />
           
-        <button className="add-btn"
-        onClick={()=> props.addTodo({
-          id: Math.floor(Math.random()*1000),
-          item: todo,
-          completed:false,
+        <button
+          className="add-btn"
+          onClick={() =>
+            props.addTodo({
+            id: Math.floor(Math.random() * 1000),
+            item: todo,
+            completed:false,
         })}
         >
             Add 
@@ -49,7 +54,14 @@ const Todos = (props) => {
           {
             props.todos.map((item) => {
               return <li key={item.id}>
-                {item.item} <button onClick={() => props.removeTodo(item.id)}>Delete</button>{" "}
+                {item.item}
+                <textarea ref={inputRef} disabled={inputRef}
+                defaultValue={item.item}
+                />
+                  
+                
+                <button>Edit</button>
+                 <button onClick={() => props.removeTodo(item.id)}>Delete</button>{" "}
                 </li>;
             })
           }
