@@ -1,9 +1,16 @@
 import React, { useState } from 'react'
+import { addTodos } from "../redux/reducer";
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
   return {
     todos: state,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodo: (obj) => dispatch(addTodos(obj)),
   };
 };
 
@@ -32,4 +39,4 @@ const Todos = (props) => {
   )
 }
 
-export default connect(null,null)(Todos);
+export default connect(mapStateToProps,null)(Todos);
