@@ -32,11 +32,17 @@ const Todos = (props) => {
           className='todo-input'
           />
           
-        <button className="add-btn">
+        <button className="add-btn"
+        onClick={()=> props.addTodo({
+          id: Math.floor(Math.random()*1000),
+          item: todo,
+          completed:false,
+        })}
+        >
             Add 
         </button>
     </div>
   )
 }
 
-export default connect(mapStateToProps,null)(Todos);
+export default connect(mapStateToProps,mapDispatchToProps)(Todos);
