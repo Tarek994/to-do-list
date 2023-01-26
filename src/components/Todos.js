@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 
+const mapStateToProps = (state) => {
+  return {
+    todos: state,
+  };
+};
+
+
 const Todos = (props) => {
     const [todo, setTodo] = useState("");
 
