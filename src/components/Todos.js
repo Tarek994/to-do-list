@@ -41,6 +41,15 @@ const Todos = (props) => {
         >
             Add 
         </button>
+        <br/>
+
+        <ul>
+          {
+            props.todos.map((item) => {
+              return <li key={item.id}>{item.item}</li>;
+            })
+          }
+        </ul>
     </div>
   )
 }
