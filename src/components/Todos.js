@@ -35,7 +35,7 @@ const Todos = (props) => {
       setTodo("");
     }
   };
-  //console.log("props from store", props);
+  
   return (
     <div className="addTodos">
       <input
@@ -57,5 +57,5 @@ const Todos = (props) => {
     </div>
   );
 };
-//we can use connect method to connect this component with redux store
+
 export default connect(mapStateToProps, mapDispatchToProps)(Todos);
